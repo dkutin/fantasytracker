@@ -1,2 +1,10 @@
 .DS_Store
 .idea/
+bin/
+bin/team/
+tmp/
+tmp/auth/
+tmp/data/
+tmp/data/players/
+test.php
+constants.php

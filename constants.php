@@ -1,12 +1,14 @@
 <?php
 
+/*
+*   Configurable Constants
+*/
 
-// User specific values to be configed before run
 define('CONSUMER_KEY', '');
 define('CONSUMER_SECRET', '');
-define('LEAGUE_KEY', 'nba.l.');
+define('LEAGUE_KEY', '');
 define('TEAM_ID', '');
-define('AUTH_ENDPOINT', 'https://api.login.yahoo.com/oauth2/get_token');
+define('FREE_AGENTS_MAX', 50);
 static $scored_stats = [
     '12' => 1,      //PTS
     '15' => 1.2,    //REB
@@ -15,3 +17,10 @@ static $scored_stats = [
     '18' => 3,      //STL
     '19' => -1,     //TO
 ];
+
+/*
+ *  Non-Configurable Constants
+ */
+
+define('AUTH_ENDPOINT', 'https://api.login.yahoo.com/oauth2/get_token');
+

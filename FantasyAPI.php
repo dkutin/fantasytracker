@@ -3,12 +3,24 @@
 include_once('constants.php');
 include_once('helper.php');
 
+/**
+ * Class FantasyAPI
+ */
 class FantasyAPI
 {
 
+    /**
+     * @var bool|mixed
+     */
     private $credentials;
+    /**
+     * @var string
+     */
     private $auth_json_file;
 
+    /**
+     * FantasyAPI constructor.
+     */
     function __construct()
     {
         $this->auth_json_file = 'tmp/auth/auth_credentials_' . CONSUMER_KEY . '.json';
@@ -22,6 +34,10 @@ class FantasyAPI
         return $this;
     }
 
+    /**
+     * @param $url
+     * @return bool|mixed
+     */
     function makeAPIRequest($url)
     {
         $curl = curl_init();
@@ -41,6 +57,7 @@ class FantasyAPI
                 $this->makeAPIRequest($url);
             } else {
                 print 'Trouble Getting Refresh Token...';
+
             }
         } else if (strpos($resp, "error")) {
             print "Error in making the API Request";
@@ -54,6 +71,9 @@ class FantasyAPI
         return FALSE;
     }
 
+    /**
+     * @return bool|mixed
+     */
     function refreshToken()
     {
         // If our auth file doesn't exist, make one
@@ -91,9 +111,13 @@ class FantasyAPI
         curl_close($ch);
         writeToFile($resp, $this->auth_json_file);
         $this->credentials['expiry_time'] = time() + 3600;
+        print_r($resp);
         return json_decode($resp, TRUE);
     }
 
+    /**
+     * @return bool|mixed
+     */
     function initializeToken()
     {
         $auth_code = readline('Go to: https://api.login.yahoo.com/oauth2/request_auth?client_id=' . CONSUMER_KEY . '&redirect_uri=oob&response_type=code&language=en-us and copy the code: ');

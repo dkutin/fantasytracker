@@ -1,7 +1,7 @@
 <?php
 
-include_once('constants.php');
-include_once('helper.php');
+include_once(__DIR__ . '/constants.php');
+include_once(__DIR__ . '/helper.php');
 
 /**
  * Class FantasyAPI
@@ -23,7 +23,7 @@ class FantasyAPI
      */
     function __construct()
     {
-        $this->auth_json_file = 'tmp/auth/auth_credentials_' . CONSUMER_KEY . '.json';
+        $this->auth_json_file = TMP_AUTH_DIR . 'auth_credentials_' . CONSUMER_KEY . '.json';
         if (file_exists($this->auth_json_file)) {
             $this->credentials = json_decode(file_get_contents($this->auth_json_file), TRUE);
         } else {
@@ -40,8 +40,8 @@ class FantasyAPI
      */
     function makeAPIRequest($url)
     {
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
+        $ch = curl_init();
+        curl_setopt_array($ch, array(
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_URL => $url,
             CURLOPT_HTTPHEADER => array('authorization: Bearer ' . $this->credentials['access_token'],
@@ -49,41 +49,41 @@ class FantasyAPI
                 'Accept-Language: en-US,en;q=0.5',
                 'Cache-Control: no-cache',
                 'Content-Type: application/x-www-form-urlencoded; charset=utf-8',
-                'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:28.0) Gecko/20100101 Firefox/28.0'),
+            ),
         ));
-        $resp = curl_exec($curl);
-        if (strpos($resp, "token_expired")) {
+        $resp = curl_exec($ch);
+        curl_close($ch);
+        if (strpos($resp, "token_expired") !== FALSE) {
             if ($this->refreshToken()) {
-                $this->makeAPIRequest($url);
+                return $this->makeAPIRequest($url);
             } else {
                 print 'Trouble Getting Refresh Token...';
-
             }
-        } else if (strpos($resp, "error")) {
+        } else if (strpos($resp, "error") !== FALSE) {
             print "Error in making the API Request";
+        } else if (strpos($resp, "Request denied") !== FALSE) {
+            print "Request denied: " . $url;
         } else {
             $xml = simplexml_load_string($resp, "SimpleXMLElement", LIBXML_NOCDATA);
             $json = json_encode($xml);
-            curl_close($curl);
             return json_decode($json, TRUE);
         }
-        curl_close($curl);
         return FALSE;
     }
 
     /**
-     * @return bool|mixed
+     * @return bool
      */
     function refreshToken()
     {
         // If our auth file doesn't exist, make one
         if (!file_exists($this->auth_json_file)) {
-            return $this->initializeToken();
+            $this->initializeToken();
         }
 
         // If our token has not expired yet, return the existing auth
         if ($this->credentials['expiry_time'] > time()) {
-            return json_decode($this->auth_json_file, TRUE);
+            return TRUE;
         }
 
         $ch = curl_init();
@@ -99,25 +99,21 @@ class FantasyAPI
             CURLOPT_HTTPHEADER => array(
                 'Authorization: Basic ' . base64_encode(CONSUMER_KEY . ":" . CONSUMER_SECRET),
                 'Content-Type: application/x-www-form-urlencoded',
-                'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36'),
+            ),
             CURLOPT_POSTFIELDS => http_build_query($post_values)
         ));
         $resp = curl_exec($ch);
-        if (strpos($resp, "error") || empty($resp)) {
-            curl_close($ch);
+        curl_close($ch);
+        if (strpos($resp, "error") !== FALSE || empty($resp)) {
             print "Error getting Refresh Token";
             return FALSE;
         }
-        curl_close($ch);
         writeToFile($resp, $this->auth_json_file);
+        $this->credentials = json_decode($resp, TRUE);
         $this->credentials['expiry_time'] = time() + 3600;
-        print_r($resp);
-        return json_decode($resp, TRUE);
+        return TRUE;
     }
 
-    /**
-     * @return bool|mixed
-     */
     function initializeToken()
     {
         $auth_code = readline('Go to: https://api.login.yahoo.com/oauth2/request_auth?client_id=' . CONSUMER_KEY . '&redirect_uri=oob&response_type=code&language=en-us and copy the code: ');
@@ -136,19 +132,19 @@ class FantasyAPI
             CURLOPT_HTTPHEADER => array(
                 'Authorization: Basic ' . base64_encode(CONSUMER_KEY . ":" . CONSUMER_SECRET),
                 'Content-Type: application/x-www-form-urlencoded',
-                'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36'),
+            ),
             CURLOPT_POSTFIELDS => http_build_query($post_values)
         ));
         $resp = curl_exec($ch);
-        if (empty($resp) || strpos($resp, 'error')) {
-            curl_close($ch);
+        curl_close($ch);
+        if (strpos($resp, 'error') !== FALSE || empty($resp)) {
             print 'Error Initializing Token';
             return FALSE;
         }
-        curl_close($ch);
         writeToFile($resp, $this->auth_json_file);
+        $this->credentials = json_decode($resp, TRUE);
         $this->credentials['expiry_time'] = time() + 3600;
-        return json_decode($resp, TRUE);
+        return TRUE;
     }
 }
 

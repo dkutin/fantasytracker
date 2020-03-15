@@ -1,67 +1,87 @@
 <?php
 
-include_once('constants.php');
-include_once('ServiceCall.php');
-include_once('helper.php');
+include_once (__DIR__ . '/constants.php');
+include_once (__DIR__ . '/ServiceCall.php');
+include_once (__DIR__ . '/helper.php');
 
 /**
  * Class Analytics
  */
 class Analytics
 {
+    private $player_stats;
     /**
      * Analytics constructor.
      */
     function __construct()
     {
-        if (file_exists('tmp/data/' . LEAGUE_KEY . '_free_agents.json') && file_exists('tmp/data/' . LEAGUE_KEY . '_my_team.json')) {
-            // TODO: Remove team and free agent files from temp/ every time a new Analytics object is made ...
-            //deleteAllFromFolder('tmp/data/*.json');
-            $roster = getContents('tmp/data/' . LEAGUE_KEY . '_my_team.json');
-            $free_agents = getContents('tmp/data/' . LEAGUE_KEY . '_free_agents.json');
-            writeToFile(json_encode($roster['team']['roster']['players']), 'bin/team_' . TEAM_ID . '_roster.json');
-            writeToFile(json_encode($free_agents['league']['players']), 'bin/free_agents.json');
+        if (file_exists(TMP_DATA_DIR . LEAGUE_KEY . '_free_agents.json') && file_exists(TMP_DATA_DIR . LEAGUE_KEY . '_my_team.json')) {
+            $roster = getContents(TMP_DATA_DIR . LEAGUE_KEY . '_my_team.json');
+            $free_agents = getContents(TMP_DATA_DIR . LEAGUE_KEY . '_free_agents.json');
+            writeToFile(json_encode($roster['team']['roster']['players']), BIN_DIR . 'team_' . TEAM_ID . '_roster.json');
+            writeToFile(json_encode($free_agents['league']['players']), BIN_DIR . 'free_agents.json');
+            $this->player_stats = [
+                'Roster' => $this->createPlayerStats('Roster'),
+                'FA' => $this->createPlayerStats('FA'),
+            ];
         }
         return $this;
     }
 
     /**
-     * @return string
+     * @return array
      */
-    function generateReport()
+    function generateSuggestion()
     {
-        $averages['FA'] = $this->createPlayerAverages('FA');
-        $averages['Roster'] = $this->createPlayerAverages('Roster');
-        $player_weight = [];
-        $data = "";
+        $player_delta = [
+            'FA' => [
+                ONE_WEEK_AVG => $this->getPlayerDelta('FA', ONE_WEEK_AVG),
+                TWO_WEEK_AVG => $this->getPlayerDelta('FA', TWO_WEEK_AVG),
+                ONE_MO_AVG => $this->getPlayerDelta('FA', ONE_MO_AVG),
+            ],
+            'Roster' => [
+                ONE_WEEK_AVG => $this->getPlayerDelta('Roster', ONE_WEEK_AVG),
+                TWO_WEEK_AVG => $this->getPlayerDelta('Roster', TWO_WEEK_AVG),
+                ONE_MO_AVG => $this->getPlayerDelta('Roster', ONE_MO_AVG),
+            ],
+        ];
 
-        foreach ($averages['Roster'] as $rplayer => $rplayer_avg) {
-            $free_agents = -1;
-            foreach ($averages['FA'] as $fplayer => $fplayer_avg) {
-                $free_agents++;
-                if ($fplayer_avg >= $rplayer_avg) {
-                    $player_weight[$fplayer] = isset($player_weight[$fplayer]) ? $player_weight[$fplayer] + 1 : 1 - $free_agents;
-                    $player_weight[$rplayer] = isset($player_weight[$rplayer]) ? $player_weight[$rplayer] - 1 : -1;
-                } else {
-                    break;
+        $player_score = [];
+
+        // TODO: Maybe use central limit theorem here to better rank players
+        foreach ($player_delta as $type => $data) {
+            foreach ($data as $stat => $week_values) {
+                foreach ($week_values as $week => $player_averages) {
+                    foreach ($player_averages as $player => $delta) {
+                        if (empty($player_score[$type][$player])) {
+                            $player_score[$type][$player] = $this->player_stats[$type][$week][$player];
+                        }
+                        switch ($stat) {
+                            case ONE_WEEK_AVG:
+                                $player_score[$type][$player] += 1 * $delta;
+                                break;
+                            case TWO_WEEK_AVG:
+                                $player_score[$type][$player] += 1.5 * $delta;
+                                break;
+                            case ONE_MO_AVG:
+                                $player_score[$type][$player] += 3 * $delta;
+                                break;
+                        }
+                    }
                 }
             }
         }
 
-        foreach ($player_weight as $player => $weight) {
-            if (array_key_exists($player, $averages['Roster'])) {
-                print "You should consider dropping: ${player}. (${weight})" . PHP_EOL;
-                $data .= "You should consider dropping: ${player}. (${weight})" . PHP_EOL;
-            } else {
-                if ($weight > 0) {
-                    print "You should consider picking up: ${player}. (${weight})" . PHP_EOL;
-                    $data .= "You should consider picking up: ${player}. (${weight})" . PHP_EOL;
+        $player_suggestions = [];
+        foreach ($player_score['FA'] as $fa_player => $fa_score) {
+            foreach ($player_score['Roster'] as $r_player => $r_score) {
+                if ($fa_score > $r_score) {
+                    $player_suggestions[$r_player][$fa_player] = $fa_score - $r_score;
                 }
             }
         }
-        writeToFile(json_encode($player_weight), 'bin/analysis_' . time() . '.json');
-        return $data;
 
+        return $player_suggestions;
     }
 
     /**
@@ -70,14 +90,15 @@ class Analytics
      * @return array
      */
     function createPlayerStats($type, $player = '') {
+        global $scored_stats;
         // If we've specified a player, get their weekly stats (if available)
         if (empty($player)) {
-            $files = glob("tmp/data/players/${type}/*.json", GLOB_BRACE);
+            $files = glob(TMP_DATA_PLAYERS_DIR . "${type}/*.json", GLOB_BRACE);
         } else {
-            $files = glob("tmp/data/players/${type}/player_${player}_week_*.json", GLOB_BRACE);
-            if (count($files) < 2) {
+            $files = glob(TMP_DATA_PLAYERS_DIR . "${type}/player_${player}_week_*.json", GLOB_BRACE);
+            if (count($files) == 0) {
                 print "Not enough data given for player ${player}!";
-                return FALSE;
+                return [];
             }
         }
 
@@ -85,7 +106,6 @@ class Analytics
         foreach ($files as $file) {
             $week = substr($file, -7, 2);
             $data = getContents($file);
-            global $scored_stats;
             $gp = $data['player']['player_stats']['stats']['stat']['0']['value'];
             $averages = [];
             if ($gp > 0) {
@@ -101,31 +121,34 @@ class Analytics
         return $players;
     }
 
-    function getSevenDayAverage($type, $player = '') {
-        $data = $this->createPlayerStats($type, $player);
+    function getPlayerDelta($type, $stat, $player = '') {
+        if (empty($this->player_stats[$type])) {
+            $this->player_stats[$type] = $this->createPlayerStats($type, $player);
+        }
+        $data = $this->player_stats[$type];
         $stats = [];
         foreach ($data as $week => $players) {
             foreach ($players as $player => $value) {
-                if (!empty($data[$week-1][$player])) {
-                    $stats[$week][$player] = $data[$week][$player] - $data[$week-1][$player];
+                if (!empty($data[$week-$stat][$player])) {
+                    $stats[$week][$player] = $data[$week][$player] - $data[$week-$stat][$player];
                 }
             }
         }
         return $stats;
     }
 
-    // TODO: Maybe add another parameter to merge 2 functions ...
-    function getFourteenDayAverage($type, $player = '') {
-        $data = $this->createPlayerStats($type, $player);
-        $stats = [];
-        foreach ($data as $week => $players) {
-            foreach ($players as $player => $value) {
-                if (!empty($data[$week-2][$player])) {
-                    $stats[$week][$player] = $data[$week][$player] - $data[$week-2][$player];
-                }
+    function generateReport() {
+        $suggestions = $this->generateSuggestion();
+        $data = '';
+        foreach ($suggestions as $r_player => $fa_players) {
+            arsort($fa_players);
+            $data .= "<div><p><b>$r_player can be replaced by: </b><br/>";
+            foreach ($fa_players as $fa_player => $diff) {
+                $data .= "<div>&emsp;&emsp;$fa_player: $diff </div><br/>";
             }
+            $data .= "</p></div></br>";
         }
-        return $stats;
+        writeToFile($data, BIN_DIR . 'analysis.csv');
+        return $data;
     }
-
 }

@@ -33,9 +33,3 @@ function getContents($filepath) {
     }
 }
 
-function sendEmail($recipient, $data)
-{
-    $headers = "From: fantasytracker@project.com";
-    mail($recipient, 'Your FantasyTrader Update!', $data, $headers);
-}
-

@@ -1,8 +1,8 @@
 <?php
 
-include_once('constants.php');
-include_once('FantasyAPI.php');
-include_once('helper.php');
+include_once(__DIR__ . '/constants.php');
+include_once(__DIR__ . '/FantasyAPI.php');
+include_once(__DIR__ . '/helper.php');
 
 /**
  * Class ServiceCall
@@ -53,7 +53,7 @@ class ServiceCall
     function getMyPlayers() {
         $my_team = "https://fantasysports.yahooapis.com/fantasy/v2/team/". LEAGUE_KEY . ".t.". TEAM_ID ."/roster";
         $answer = $this->api->makeAPIRequest($my_team);
-        writeToFile(json_encode($answer), 'tmp/data/' . LEAGUE_KEY . '_my_team.json');
+        writeToFile(json_encode($answer), TMP_DATA_DIR . LEAGUE_KEY . '_my_team.json');
         return $answer;
     }
 
@@ -66,7 +66,7 @@ class ServiceCall
             $free_agents = "https://fantasysports.yahooapis.com/fantasy/v2/league/". LEAGUE_KEY ."/players;status=FA;start=${num};sort=OR";
             $answer = array_merge_recursive($answer, $this->api->makeAPIRequest($free_agents));
         }
-        writeToFile(json_encode($answer), 'tmp/data/' . LEAGUE_KEY . '_free_agents.json');
+        writeToFile(json_encode($answer), TMP_DATA_DIR . LEAGUE_KEY . '_free_agents.json');
         return $answer;
     }
 
@@ -79,7 +79,7 @@ class ServiceCall
         $week = $this->week;
         $player = "https://fantasysports.yahooapis.com/fantasy/v2/player/395.p.${player_key}/stats";
         $answer = $this->api->makeAPIRequest($player);
-        writeToFile(json_encode($answer), "tmp/data/players/${type}/player_${player_key}_week_${week}.json");
+        writeToFile(json_encode($answer), TMP_DATA_PLAYERS_DIR . "${type}/player_${player_key}_week_${week}.json");
         return $answer;
     }
 
@@ -100,5 +100,4 @@ class ServiceCall
             $this->getPlayerStats($player['player_id'], 'Roster');
         }
     }
-
 }

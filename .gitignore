@@ -1,0 +1,12 @@
+# Files
+.DS_Store
+*.zip
+*.tar.gz
+
+# Folders
+.idea/
+bin/
+node_modules/
+build/
+.npm/
+

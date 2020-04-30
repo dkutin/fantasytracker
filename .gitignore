@@ -1,10 +1,9 @@
+# Files
 .DS_Store
+*.zip
+*.tar.gz
+
+# Folders
 .idea/
 bin/
-bin/team/
-tmp/
-tmp/auth/
-tmp/data/
-tmp/data/players/
-constants.php
-*.tar.gz
+

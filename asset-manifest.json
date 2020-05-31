@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/fantasytracker/static/css/main.d1b05096.chunk.css",
-    "main.js": "/fantasytracker/static/js/main.bc247f78.chunk.js",
-    "main.js.map": "/fantasytracker/static/js/main.bc247f78.chunk.js.map",
+    "main.css": "/fantasytracker/static/css/main.6287503d.chunk.css",
+    "main.js": "/fantasytracker/static/js/main.ae42efce.chunk.js",
+    "main.js.map": "/fantasytracker/static/js/main.ae42efce.chunk.js.map",
     "runtime-main.js": "/fantasytracker/static/js/runtime-main.25dd30ef.js",
     "runtime-main.js.map": "/fantasytracker/static/js/runtime-main.25dd30ef.js.map",
     "static/js/2.ade403f7.chunk.js": "/fantasytracker/static/js/2.ade403f7.chunk.js",
     "static/js/2.ade403f7.chunk.js.map": "/fantasytracker/static/js/2.ade403f7.chunk.js.map",
     "index.html": "/fantasytracker/index.html",
-    "precache-manifest.6aa9d056ecf1a972e029c9e7e043ca63.js": "/fantasytracker/precache-manifest.6aa9d056ecf1a972e029c9e7e043ca63.js",
+    "precache-manifest.79a5bf8417be29392741d009e7697e2e.js": "/fantasytracker/precache-manifest.79a5bf8417be29392741d009e7697e2e.js",
     "service-worker.js": "/fantasytracker/service-worker.js",
-    "static/css/main.d1b05096.chunk.css.map": "/fantasytracker/static/css/main.d1b05096.chunk.css.map",
+    "static/css/main.6287503d.chunk.css.map": "/fantasytracker/static/css/main.6287503d.chunk.css.map",
     "static/js/2.ade403f7.chunk.js.LICENSE.txt": "/fantasytracker/static/js/2.ade403f7.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.25dd30ef.js",
     "static/js/2.ade403f7.chunk.js",
-    "static/css/main.d1b05096.chunk.css",
-    "static/js/main.bc247f78.chunk.js"
+    "static/css/main.6287503d.chunk.css",
+    "static/js/main.ae42efce.chunk.js"
   ]
 }

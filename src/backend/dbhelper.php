@@ -64,7 +64,7 @@ function getPlayerStats($player_id) {
 
 function getPlayerInfo($player_id) {
     global $db;
-    return $db->getMultiple("SELECT * FROM player WHERE player_id = '${player_id}'");
+    return $db->get("SELECT * FROM player WHERE player_id = '${player_id}'");
 }
 
 function getScoredStats($league_id) {

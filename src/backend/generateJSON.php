@@ -3,11 +3,12 @@ include_once (__DIR__ . '/class/Analytics.php');
 
 $an = new Analytics(1);
 $analysis = $an->generateReport();
-$json = [];
+$json = array();
 foreach ($analysis as $player => $values) {
-    $json[$player]['stats'] = getPlayerStats($player);
-    $json[$player]['analysis'] = $values;
-    $json[$player]['info'] = getPlayerInfo($player)[0];
+    $json['players'][] = array(
+            'analysis' => $values,
+            'info' => getPlayerInfo($player),
+        );
 }
 
 writeToFile(json_encode($json), __DIR__ . '/../../public/playerData.json');

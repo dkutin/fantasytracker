@@ -1,18 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import $ from 'jquery';
 import './App.css';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Featured from './components/Featured';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            foo: 'bar',
+            playerData: {}
+        };
+    }
+
+    getPlayerData(){
+        $.ajax({
+            url:'/playerData.json',
+            dataType:'json',
+            cache: false,
+            success: function(data){
+                this.setState({data: data});
+            }.bind(this),
+            error: function(xhr, status, err){
+                console.log(err);
+                alert(err);
+            }
+        });
+    }
+
+    componentDidMount(){
+        this.getPlayerData();
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <Header/>
+                <Featured data={this.state.data}/>
+                <Footer/>
+            </div>
+        );
+    }
 }
 
 export default App;

@@ -125,7 +125,7 @@ class Analytics
                 foreach ($scored_stats as $stat_id => $value) {
                     $player_score[$player_id][$type] += $value * $values[$stat_id];
                 }
-                $player_score[$player_id][$type] = ($player_score[$player_id][$type]) / $values['gp'];
+                $player_score[$player_id][$type] = number_format((float)(($player_score[$player_id][$type]) / $values['gp']), 2, '.', '');
             }
         }
 

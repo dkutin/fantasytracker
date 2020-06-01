@@ -9,12 +9,19 @@ class Featured extends Component {
                 var info = player.info;
                 var analysis = player.analysis;
                 var highlight = '';
+
+                // Check that all values are set.
+                if (typeof analysis[1] == 'undefined') analysis[1] = 0;
+                if (typeof analysis[2] == 'undefined') analysis[2] = 0;
+                if (typeof analysis[4] == 'undefined') analysis[4] = 0;
+
                 if (analysis[1] >= analysis[2]) {
                     highlight = 'green';
-                } else if (analysis[1] >= analysis[4]) {
-                    highlight = 'yellow';
-                } else {
+                } else if (analysis[4] >= analysis[1] &&
+                    analysis[4] >= analysis[2]) {
                     highlight = 'red';
+                } else {
+                    highlight = 'yellow';
                 }
                 return <div key={info.player_id} className="six-col player-item">
                     <div className="player-image" id={highlight}>

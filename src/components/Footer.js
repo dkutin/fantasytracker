@@ -4,7 +4,7 @@ class Footer extends Component {
     render() {
         return (
             <footer>
-                <div classname="row">
+                <div id="footer">
                     <hr/>
                     <div className="three-col">
                         <p> Made by Dmitry Kutin </p>

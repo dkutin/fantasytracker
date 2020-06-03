@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/fantasytracker/static/css/main.475ffe5e.chunk.css",
-    "main.js": "/fantasytracker/static/js/main.187f3e69.chunk.js",
-    "main.js.map": "/fantasytracker/static/js/main.187f3e69.chunk.js.map",
+    "main.js": "/fantasytracker/static/js/main.c6e2a794.chunk.js",
+    "main.js.map": "/fantasytracker/static/js/main.c6e2a794.chunk.js.map",
     "runtime-main.js": "/fantasytracker/static/js/runtime-main.25dd30ef.js",
     "runtime-main.js.map": "/fantasytracker/static/js/runtime-main.25dd30ef.js.map",
     "static/js/2.ade403f7.chunk.js": "/fantasytracker/static/js/2.ade403f7.chunk.js",
     "static/js/2.ade403f7.chunk.js.map": "/fantasytracker/static/js/2.ade403f7.chunk.js.map",
     "index.html": "/fantasytracker/index.html",
-    "precache-manifest.b5ec0ed29a8d06146c23c551620900bd.js": "/fantasytracker/precache-manifest.b5ec0ed29a8d06146c23c551620900bd.js",
+    "precache-manifest.9d76ed6c948af873bb8c9fef591448f6.js": "/fantasytracker/precache-manifest.9d76ed6c948af873bb8c9fef591448f6.js",
     "service-worker.js": "/fantasytracker/service-worker.js",
     "static/css/main.475ffe5e.chunk.css.map": "/fantasytracker/static/css/main.475ffe5e.chunk.css.map",
     "static/js/2.ade403f7.chunk.js.LICENSE.txt": "/fantasytracker/static/js/2.ade403f7.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.25dd30ef.js",
     "static/js/2.ade403f7.chunk.js",
     "static/css/main.475ffe5e.chunk.css",
-    "static/js/main.187f3e69.chunk.js"
+    "static/js/main.c6e2a794.chunk.js"
   ]
 }

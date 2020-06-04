@@ -6,7 +6,7 @@ class Stats extends Component {
         if (this.props.data) {
             var count = 0;
             var playerStats = this.props.data.map(function (data) {
-                if (count === 3) return;
+                if (count === 2) return;
                 count++;
                 return (<span className="stat-entry">
                     <strong>Week {data.week} </strong> <br/> Pts: {data.pts} | Ast: {data.ast} | Reb: {data.reb} | Blk: {data.blk} | Stl: {data.stl} | TO: {data.trn}

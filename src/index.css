@@ -1,6 +1,13 @@
-@media only screen and (max-width: 1200px) and (min-width: 0px) {
+@media only screen and (max-width: 1268px) and (min-width: 900px) {
+
+  div.two-col {
+    width: 30%;
+  }
+
   div.player-stats {
     width: 80%;
+    margin-top: 2em;
+    font-size: 14px;
     float: none;
   }
 
@@ -10,14 +17,38 @@
 
   div.player-analysis {
     float: right;
-    width: 40%;
+    width: 48%;
+    margin-top: 20px;
+    font-size: 12px;
   }
 
   img.player-image {
     float: left;
-    margin: 16px;
+    margin: 10px;
     padding: 8px;
     min-height: 80px;
+  }
+}
+
+@media only screen and (max-width: 900px) and (min-width: 0px) {
+  div.two-col {
+    width: auto;
+    min-width: 450px;
+  }
+
+  div.player-analysis {
+    margin: 5px;
+    font-size: 12px;
+  }
+
+  div.player-stats {
+    float: none;
+    width: 90%;
+    font-size: 14px;
+  }
+
+  span.player-name {
+    margin: 0;
   }
 }
 
@@ -136,6 +167,7 @@ hr.intro {
 .player-name {
   font-size: 16px;
   font-weight: 600;
+  margin: 12px;
 }
 
 .analysis {

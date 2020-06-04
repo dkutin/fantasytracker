@@ -49,7 +49,7 @@ class Featured extends Component {
             <div className="featured-content">
                 <div className="row">
                     <div>
-                        <h2 className="section-title"> All Fantasy Players</h2>
+                        <h2 className="section-title"> All Players </h2>
                         {players}
                     </div>
                 </div>

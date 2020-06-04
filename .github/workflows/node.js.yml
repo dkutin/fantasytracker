@@ -29,5 +29,3 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
-    - run: gh-pages -d build
-      if: github.event == 'push' && github.branch == 'master'

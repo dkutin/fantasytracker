@@ -10,7 +10,7 @@
 
   div.player-analysis {
     float: right;
-    width: 50%;
+    width: 40%;
   }
 
   img.player-image {
@@ -54,7 +54,7 @@ h2 {
 }
 
 h2.section-title {
-  font-size: 2em;
+  font-size: 3em;
   font-weight: 800;
 }
 
@@ -144,7 +144,7 @@ hr.intro {
 
 .player-analysis {
   text-align: left;
-  margin: 1em;
+  margin: 2em 1em;
 }
 
 .player-stats {

@@ -8,6 +8,7 @@ foreach ($analysis as $player => $values) {
     $json['players'][] = array(
             'analysis' => $values,
             'info' => getPlayerInfo($player),
+            'stats' => getPlayerStats($player)
         );
 }
 

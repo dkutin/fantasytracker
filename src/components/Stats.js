@@ -6,6 +6,7 @@ class Stats extends Component {
         if (this.props.data) {
             var count = 0;
             var playerStats = this.props.data.map(function (data) {
+                // eslint-disable-next-line array-callback-return
                 if (count === 2) return;
                 count++;
                 return (<span className="stat-entry">

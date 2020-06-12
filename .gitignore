@@ -2,6 +2,7 @@
 .DS_Store
 *.zip
 *.tar.gz
+*.code-workspace
 
 # Folders
 .idea/

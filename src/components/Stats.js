@@ -10,11 +10,9 @@ class Stats extends Component {
                 if (count === 2) return;
                 count++;
                 return (<span className="stat-entry">
-                    <strong>Week {data.week} </strong> <br/> Pts: {data.pts} | Ast: {data.ast} | Reb: {data.reb} | Blk: {data.blk} | Stl: {data.stl} | TO: {data.trn}
-                    <br/><br/>
+                    <strong>Week {data.week} </strong> <hr/> Pts: {data.pts} | Ast: {data.ast} | Reb: {data.reb} | Blk: {data.blk} | Stl: {data.stl} | TO: {data.trn}
                 </span>);
             });
-            console.log(this.props.data);
 
         }
 

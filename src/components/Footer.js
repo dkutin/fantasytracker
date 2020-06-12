@@ -6,18 +6,11 @@ class Footer extends Component {
             <footer>
                 <div id="footer">
                     <hr/>
-                    <div className="three-col">
+                    <div className="two-col">
                         <p> Made by Dmitry Kutin </p>
                     </div>
-                    <div className="three-col">
+                    <div className="two-col">
                         <p> Check out my <a className="link" href="https://github.com/dkutin"> Github </a> </p>
-                    </div>
-                    <div className="three-col">
-                        <p>
-                            Green: Player performing well. <br/>
-                            Yellow: Unsure of players performance. <br/>
-                            Red: Player is under performing. <br/>
-                        </p>
                     </div>
                 </div>
             </footer>

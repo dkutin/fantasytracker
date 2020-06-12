@@ -15,7 +15,8 @@ class Featured extends Component {
                 if (typeof analysis[1] == 'undefined') analysis[1] = 0.00;
                 if (typeof analysis[2] == 'undefined') analysis[2] = 0.00;
                 if (typeof analysis[4] == 'undefined') analysis[4] = 0.00;
-
+                
+                // TODO: This is going to need rework as to how we suggest players
                 if (analysis[1] >= analysis[2]) {
                     highlight = 'green';
                 } else if (analysis[4] >= analysis[1] &&
@@ -39,7 +40,7 @@ class Featured extends Component {
                                 <strong> One Month </strong>: {analysis[4]}
                             </span><br/>
                         </div>
-                        </div>
+                    </div>
                     <Stats key={info.player_id} data={stats}/>
                 </div>
             })

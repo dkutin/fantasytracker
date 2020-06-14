@@ -27,9 +27,9 @@ class Featured extends Component {
                     highlight = 'yellow';
                 }
                 return <div key={info.player_id} className="two-col player-item">
-                    <div className="player-feature"> <strong>{count}.</strong>
+                    <div className="player-feature"> 
                         <img className="player-image" id={highlight} alt={info.full_name} src={info.image}/> <br/>
-                        <span className="player-name"> {info.full_name}</span>
+                        <span className="player-name"> {count}. {info.full_name}</span>
                         <div className="player-analysis">
                             <span className="analysis">
                                 <strong> One Week </strong>: {analysis[1]}

@@ -162,7 +162,7 @@ hr.intro {
 
 .player-feature {
   float: left;
-  margin: 12px;
+  margin-left: 8px;
   padding: 8px 0;
   min-height:100px;
   min-width: 180px;

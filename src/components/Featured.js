@@ -3,9 +3,10 @@ import Stats from './Stats';
 
 class Featured extends Component {
     render() {
-
+        var count = 0;
         if (this.props.data) {
             var players = this.props.data.players.map(function(player){
+                count++;
                 var info = player.info;
                 var analysis = player.analysis;
                 var stats = player.stats;
@@ -26,7 +27,7 @@ class Featured extends Component {
                     highlight = 'yellow';
                 }
                 return <div key={info.player_id} className="two-col player-item">
-                    <div className="player-feature">
+                    <div className="player-feature"> <strong>{count}.</strong>
                         <img className="player-image" id={highlight} alt={info.full_name} src={info.image}/> <br/>
                         <span className="player-name"> {info.full_name}</span>
                         <div className="player-analysis">

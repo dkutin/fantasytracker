@@ -132,10 +132,28 @@ class Analytics
         return $player_score;
     }
 
+    function sortPlayers($players) {
+        $keys = array_keys($players);
+        foreach ($players as $player => $stats) {
+            $one_week[$player] = $stats[ONE_WEEK_AVG];
+            $two_week[$player]  = $stats[TWO_WEEK_AVG];
+            $one_month[$player]  = $stats[ONE_MO_AVG];
+        }
+        
+        array_multisort(
+            $one_week, SORT_DESC, SORT_NUMERIC,
+            $two_week, SORT_DESC, SORT_NUMERIC,
+            $one_month, SORT_DESC, SORT_NUMERIC,
+            $players, $keys
+        );
+        
+        $players = array_combine($keys, $players);
+        return $players;
+    }
+
     function generateReport() {
-        $suggestions = $this->generateSuggestion();
-        $data = $suggestions;
-        setAnalysis($this->uid, json_encode($data));
-        return $data;
+        $analysis = $this->sortPlayers($this->generateSuggestion());
+        setAnalysis($this->uid, json_encode($analysis));
+        return $analysis;
     }
 }

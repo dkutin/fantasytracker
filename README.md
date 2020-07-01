@@ -6,7 +6,7 @@ After playing Yahoo! Fantasy Basketball for a few years, I wanted a more intuiti
 
 ## Usage
 https://fantasytracker.dmitrykutin.com
-https://dkutin.github.io/fantasytracker
+https://dkutin.github.io/fantasytracker/
 
 Current implementation pulls data from my league, though user log-in feature to be added soon to provide a personalized report for any user playing Yahoo! Fantasy Basketball. 
 

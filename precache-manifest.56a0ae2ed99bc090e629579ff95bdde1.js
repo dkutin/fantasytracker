@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4a1f5b402319f02ac7612a8af9680fe2",
+    "revision": "efddffc26ee8b51654205cd023a09d4f",
     "url": "/fantasytracker/index.html"
   },
   {
-    "revision": "bdd7226e1f3ea59b5297",
+    "revision": "28cb63ec2e993f26bc20",
     "url": "/fantasytracker/static/css/main.2c29634d.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/fantasytracker/static/js/2.a1db822c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "bdd7226e1f3ea59b5297",
-    "url": "/fantasytracker/static/js/main.7333d4d3.chunk.js"
+    "revision": "28cb63ec2e993f26bc20",
+    "url": "/fantasytracker/static/js/main.122c945f.chunk.js"
   },
   {
     "revision": "c238f8b29f4f504d5f3c",

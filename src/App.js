@@ -10,14 +10,13 @@ class App extends Component {
     constructor(props){
         super(props);
         this.state = {
-            foo: 'bar',
             playerData: {}
         };
     }
 
     getPlayerData(){
         $.ajax({
-            url:"/fantasytracker/playerData.json",
+            url:"/playerData.json",
             dataType:'json',
             cache: false,
             success: function(data){

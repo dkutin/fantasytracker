@@ -16,7 +16,7 @@ class App extends Component {
 
     getPlayerData(){
         $.ajax({
-            url:"/playerData.json",
+            url:"/fantasytracker/playerData.json",
             dataType:'json',
             cache: false,
             success: function(data){

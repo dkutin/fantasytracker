@@ -1,7 +1,8 @@
 import React, {Component} from "react";
-import Stats from './Stats';
+import Item from './Item';
 
 class Featured extends Component {
+
     render() {
         var count = 0;
         if (this.props.data) {
@@ -26,32 +27,18 @@ class Featured extends Component {
                 } else {
                     highlight = 'yellow';
                 }
-                return <div key={info.player_id} className="two-col player-item">
-                    <div className="player-feature"> 
-                        <img className="player-image" id={highlight} alt={info.full_name} src={info.image}/> <br/>
-                        <span className="player-name"> {count}. {info.full_name}</span>
-                        <div className="player-analysis">
-                            <span className="analysis">
-                                <strong> One Week </strong>: {analysis[1]}
-                            </span><br/>
-                            <span className="analysis">
-                                <strong> Two Weeks </strong>: {analysis[2]}
-                            </span><br/>
-                            <span className="analysis">
-                                <strong> One Month </strong>: {analysis[4]}
-                            </span><br/>
-                        </div>
-                    </div>
-                    <Stats key={info.player_id} data={stats}/>
-                </div>
+                return (
+                    // TODO: Have only key, player, stat fields 
+                        <Item key={info.player_id} highlight={highlight} stats={stats} analysis={analysis} count={count} info={info}/>
+                    );
             })
         }
         return (
             <section>
             <div className="featured-content">
                 <div className="row">
-                    <div>
-                        <h2 className="section-title"> All Players </h2>
+                <h2> All Players </h2>
+                    <div className="players">
                         {players}
                     </div>
                 </div>

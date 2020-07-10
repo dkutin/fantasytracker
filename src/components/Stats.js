@@ -21,8 +21,8 @@ class Stats extends Component {
         }
 
         if (this.props.analysis) {
-            var analysis = this.props.analysis;
-            
+            // var analysis = this.props.analysis;
+
         }
 
 
@@ -32,19 +32,19 @@ class Stats extends Component {
                 <div className="player-analysis">
                     <div className="analysis-entry">
                         <span className="analysis">
-                            <strong> One Week </strong>: {this.props.analysis[1]}
+                            <strong> One Week Avg</strong>: {this.props.analysis[1]}
                         </span>
                         <br/>
                     </div>
                     <div className="analysis-entry">
                         <span className="analysis">
-                            <strong> Two Weeks </strong>: {this.props.analysis[2]}
+                            <strong> Two Week Avg</strong>: {this.props.analysis[2]}
                         </span>
                         <br/>
                     </div>
                     <div className="analysis-entry">
                         <span className="analysis">
-                            <strong> One Month </strong>: {this.props.analysis[4]}
+                            <strong> One Month Avg</strong>: {this.props.analysis[4]}
                         </span>
                         <br/>
                     </div>

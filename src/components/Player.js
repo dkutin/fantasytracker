@@ -24,7 +24,11 @@ class Player extends Component {
                         <p>{count}.</p>
                     </div>
                     <img className="player-image" id={highlight} alt={name} src={image}/> <br/>
-                    <span className="player-name">{name}</span>                    
+                    <span className="player-name">{name}</span>
+                    {count === 1 && <div className="tooltip">
+                        <p> Click/Tap on a player card to view stats </p>
+                        <img id="arrow" alt="arrow" src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_down_48px-128.png" />
+                        </div>}               
                 </div>
                 </div>
         );

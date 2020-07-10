@@ -1,24 +1,72 @@
 import React, {Component} from "react";
 
 class Stats extends Component {
+
     render() {
 
-        if (this.props.data) {
-            var count = 0;
-            var playerStats = this.props.data.map(function (data) {
-                // eslint-disable-next-line array-callback-return
-                if (count === 2) return;
-                count++;
-                return (<span className="stat-entry">
-                    <strong>Week {data.week} </strong> <hr/> Pts: {data.pts} | Ast: {data.ast} | Reb: {data.reb} | Blk: {data.blk} | Stl: {data.stl} | TO: {data.trn}
-                </span>);
+        if (this.props.stats) {
+            var playerStats = this.props.stats.map(function (stat) {
+                return (
+                    <tr>
+                        <td>{stat.week}</td>
+                        <td>{stat.pts}</td>
+                        <td>{stat.ast}</td>
+                        <td>{stat.reb}</td>
+                        <td>{stat.blk}</td>
+                        <td>{stat.stl}</td>
+                        <td>{stat.trn}</td>
+                    </tr>
+                    )
             });
-
         }
 
+        if (this.props.analysis) {
+            var analysis = this.props.analysis;
+            
+        }
+
+
         return (
-            <div className="player-stats">
-                {playerStats}
+            <div onClick={this.props.handleClick} className="card">
+                <div className="content">
+                <div className="player-analysis">
+                    <div className="analysis-entry">
+                        <span className="analysis">
+                            <strong> One Week </strong>: {this.props.analysis[1]}
+                        </span>
+                        <br/>
+                    </div>
+                    <div className="analysis-entry">
+                        <span className="analysis">
+                            <strong> Two Weeks </strong>: {this.props.analysis[2]}
+                        </span>
+                        <br/>
+                    </div>
+                    <div className="analysis-entry">
+                        <span className="analysis">
+                            <strong> One Month </strong>: {this.props.analysis[4]}
+                        </span>
+                        <br/>
+                    </div>
+                </div>
+                <table className="player-stats">
+                    <thead>
+                    <tr>
+                        <th>Week</th>
+                        <th>Pts</th>
+                        <th>Ast</th>
+                        <th>Reb</th>
+                        <th>Blk</th>
+                        <th>Stl</th>
+                        <th>TO</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {playerStats}
+                    </tbody>
+                </table>
+                
+                </div>
             </div>);
     }
 }

@@ -73,8 +73,10 @@ p {
 }
 
 h1 {
-  font-size: 4em;
+  background-color: #acf0ea;
+  margin: auto 5rem;
   padding: 8px;
+  font-size: 4em;
 }
 
 h2 {
@@ -203,8 +205,12 @@ hr.intro {
 }
 
 #home {
-  min-height: 300px;
-  background-color: #acf0ea;
+  min-height: 100vh;
+  background-image: url('assets/homepage-splash.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
   margin: 0;
   padding: 0;
 }
@@ -217,12 +223,16 @@ hr.intro {
 .banner {
   padding: 20px;
   width: 50%;
+  position: absolute;
+  top: 25vh;
+  left: 0;
+  right: 0;
 }
 
 .banner p {
-  margin: 20px;
-  padding: 8px;
+  padding: 20px;
   font-size: 22px;
+  background-color: #acf0ea;
 }
 
 .banner hr {
@@ -255,6 +265,21 @@ hr.intro {
   padding: 5px;
 }
 
+#github-link {
+  background-image: url('assets/github.svg');
+  background-color: #acf0ea;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 35px;
+  width: 35px;
+  margin: 20px auto;
+}
+
+#github-link:hover {
+  opacity: 0.75;
+  transition: 0.3s;
+}
+
 .card {
   width: 100%;
   border-radius: 20px;
@@ -272,7 +297,7 @@ hr.intro {
 .featured-content{ background-color: #f1f1f1;}
 
 .players {
-  margin: 20px auto;
+  margin: 20px 2em;
 }
 
 table.stats {

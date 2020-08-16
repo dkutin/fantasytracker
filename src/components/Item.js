@@ -28,7 +28,7 @@ class Item extends Component {
                 {/* TODO: Only pass one prop with a combination of this shit */}
                 <Player key={this.props.info.player_id} highlight={this.props.highlight} info={this.props.info} count={this.props.count} handleClick={this.handleClick} />
 
-                <Stats player_id={this.props.player_id}stats={this.props.stats} analysis={this.props.analysis}  handleClick={this.handleClick} />
+                <Stats player_id={this.props.info.player_id} stats={this.props.stats} analysis={this.props.analysis}  handleClick={this.handleClick} />
 
             </ReactCardFlip>
             </div>

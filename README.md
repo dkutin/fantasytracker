@@ -5,7 +5,6 @@ Built for NBA Yahoo! Fantasy games to recommend free agents to add to your roste
 After playing Yahoo! Fantasy Basketball for a few years, I wanted a more intuitive solution that would guarantee my free-agent additions to my roster, and be able to better gauge trades from a statistical point of view. I started developing this app over a year ago, which calls services from Yahoo! Fantasy API, saves data to MySQL database (Since Yahoo! Fantasy does not give access to historical records for the same season...) and run my calculations, then displaying them in a react-app front end. 
 
 ## Usage
-https://fantasytracker.dmitrykutin.com
 https://dkutin.github.io/fantasytracker/
 
 Current implementation pulls data from my league, though user log-in feature to be added soon to provide a personalized report for any user playing Yahoo! Fantasy Basketball. 

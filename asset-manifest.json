@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/fantasytracker/static/css/main.c1cdce87.chunk.css",
-    "main.js": "/fantasytracker/static/js/main.467d6fa6.chunk.js",
-    "main.js.map": "/fantasytracker/static/js/main.467d6fa6.chunk.js.map",
-    "runtime-main.js": "/fantasytracker/static/js/runtime-main.25dd30ef.js",
-    "runtime-main.js.map": "/fantasytracker/static/js/runtime-main.25dd30ef.js.map",
-    "static/js/2.cecb90ef.chunk.js": "/fantasytracker/static/js/2.cecb90ef.chunk.js",
-    "static/js/2.cecb90ef.chunk.js.map": "/fantasytracker/static/js/2.cecb90ef.chunk.js.map",
-    "index.html": "/fantasytracker/index.html",
-    "precache-manifest.39ba553cb45c5e02c7904041a9abe957.js": "/fantasytracker/precache-manifest.39ba553cb45c5e02c7904041a9abe957.js",
-    "service-worker.js": "/fantasytracker/service-worker.js",
-    "static/css/main.c1cdce87.chunk.css.map": "/fantasytracker/static/css/main.c1cdce87.chunk.css.map",
-    "static/js/2.cecb90ef.chunk.js.LICENSE.txt": "/fantasytracker/static/js/2.cecb90ef.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/fantasytracker/static/media/homepage-splash.6d3ee285.jpg"
+    "main.css": "/static/css/main.46249ecd.chunk.css",
+    "main.js": "/static/js/main.b5249b93.chunk.js",
+    "main.js.map": "/static/js/main.b5249b93.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.fe722964.js",
+    "runtime-main.js.map": "/static/js/runtime-main.fe722964.js.map",
+    "static/js/2.cecb90ef.chunk.js": "/static/js/2.cecb90ef.chunk.js",
+    "static/js/2.cecb90ef.chunk.js.map": "/static/js/2.cecb90ef.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.802840d049da3596556673d0e7339198.js": "/precache-manifest.802840d049da3596556673d0e7339198.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.46249ecd.chunk.css.map": "/static/css/main.46249ecd.chunk.css.map",
+    "static/js/2.cecb90ef.chunk.js.LICENSE.txt": "/static/js/2.cecb90ef.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/homepage-splash.6d3ee285.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.25dd30ef.js",
+    "static/js/runtime-main.fe722964.js",
     "static/js/2.cecb90ef.chunk.js",
-    "static/css/main.c1cdce87.chunk.css",
-    "static/js/main.467d6fa6.chunk.js"
+    "static/css/main.46249ecd.chunk.css",
+    "static/js/main.b5249b93.chunk.js"
   ]
 }

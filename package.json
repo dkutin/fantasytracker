@@ -1,7 +1,7 @@
 {
-  "homepage": "/fantasytracker/",
+  "homepage": "https://fantasytracker.dmitrykutin.com",
   "name": "fantasytracker",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",

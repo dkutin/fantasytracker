@@ -26,3 +26,6 @@ jobs:
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_dir: ./build
+          keep_files: true
+          cname: fantasytracker.dmitrykutin.com
+

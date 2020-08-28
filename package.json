@@ -9,10 +9,10 @@
     "@testing-library/user-event": "^7.2.1",
     "jquery": "^3.4.1",
     "react": "^16.13.1",
-    "react-card-flip": "^1.0.10",
+    "react-card-flip": "^1.0.11",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "typescript": "^3.9.6"
+    "react-scripts": "^3.4.3",
+    "typescript": "^3.9.7"
   },
   "scripts": {
     "start": "react-scripts start",
